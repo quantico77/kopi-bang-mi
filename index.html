@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="description" content="Kopi Bang Mi — kopi yang menemani hari anda.">
+  <title>Kopi Bang Mi — Kopi &amp; Cerita</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4efe5;
+      --paper-deep: #e9dfcf;
+      --ink: #241a16;
+      --muted: #74665a;
+      --coffee: #6d3e2d;
+      --coffee-dark: #3a241d;
+      --clay: #c66e4d;
+      --sage: #66785d;
+      --line: rgba(58, 36, 29, .19);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Aptos", "Segoe UI", system-ui, sans-serif;
+      --page: min(1180px, calc(100% - 64px));
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    .wrap { width: var(--page); margin-inline: auto; }
+    .topline { min-height: 42px; display:flex; align-items:center; justify-content:center; background:var(--coffee-dark); color:#f7efe3; font-size:11px; letter-spacing:.17em; text-transform:uppercase; }
+    header { border-bottom:1px solid var(--line); }
+    .nav { height:82px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; gap:12px; align-items:center; text-decoration:none; font-size:13px; font-weight:800; letter-spacing:.13em; }
+    .bean-mark { width:36px; height:36px; border:1.5px solid var(--coffee); border-radius:50%; display:grid; place-items:center; color:var(--coffee); font-family:var(--serif); font-size:18px; font-style:italic; }
+    .nav-links { display:flex; gap:34px; align-items:center; }
+    .nav-links a { text-decoration:none; font-size:13px; color:var(--muted); transition:color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color:var(--clay); }
+    .nav-cta { padding:12px 18px; border:1px solid var(--coffee); border-radius:2px; color:var(--coffee)!important; }
+    .nav-cta:hover { background:var(--coffee); color:var(--paper)!important; }
+    .hero { min-height:660px; display:grid; grid-template-columns:1.02fr .98fr; align-items:center; gap:30px; padding-block:66px 84px; }
+    .eyebrow { display:flex; align-items:center; gap:11px; color:var(--clay); font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:28px; height:1px; background:currentColor; }
+    h1 { max-width:620px; margin:24px 0 20px; font-family:var(--serif); font-weight:400; font-size:clamp(58px, 7vw, 92px); line-height:.98; letter-spacing:-.055em; }
+    h1 em { color:var(--coffee); font-weight:400; }
+    .hero-copy { max-width:440px; color:var(--muted); font-size:16px; line-height:1.8; }
+    .actions { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-top:32px; }
+    .button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; padding:0 20px; border:1px solid var(--coffee); text-decoration:none; font-size:12px; font-weight:750; letter-spacing:.045em; transition:transform .2s ease, background .2s ease, color .2s ease; }
+    .button:hover { transform:translateY(-2px); }
+    .button-primary { background:var(--coffee); color:#fff9ef; }
+    .button-primary:hover { background:var(--coffee-dark); }
+    .button-quiet { border-color:transparent; color:var(--coffee); }
+    .button-quiet span { margin-left:9px; font-size:18px; }
+    .hero-art { position:relative; min-height:490px; display:grid; place-items:center; isolation:isolate; }
+    .sun-disc { position:absolute; z-index:-2; width:min(82%, 430px); aspect-ratio:1; border-radius:50%; background:#e6d2b8; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .ring { position:absolute; z-index:-1; width:min(96%, 510px); aspect-ratio:1; border:1px solid rgba(109,62,45,.2); border-radius:50%; transform:rotate(-23deg) scaleY(.72); }
+    .ring::after { content:""; position:absolute; width:9px; height:9px; border-radius:50%; background:var(--clay); top:14%; right:19%; }
+    .cup { width:min(90%, 460px); filter:drop-shadow(0 30px 24px rgba(54,35,25,.15)); }
+    .art-caption { position:absolute; right:2%; bottom:8%; width:145px; color:var(--coffee); font-family:var(--serif); font-size:17px; line-height:1.25; transform:rotate(-7deg); }
+    .art-caption small { display:block; margin-top:8px; color:var(--muted); font-family:var(--sans); font-size:9px; letter-spacing:.16em; text-transform:uppercase; }
+    .ticker { border-block:1px solid var(--line); overflow:hidden; white-space:nowrap; }
+    .ticker-inner { display:flex; justify-content:space-around; gap:38px; padding:17px 0; color:var(--coffee); font-family:var(--serif); font-size:17px; }
+    .ticker span::after { content:"✳"; padding-left:38px; color:var(--clay); font-family:var(--sans); font-size:12px; }
+    section { scroll-margin-top:24px; }
+    .story { display:grid; grid-template-columns:.8fr 1.2fr; gap:90px; padding-block:116px; }
+    .section-index { color:var(--clay); font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
+    .story h2, .menu h2, .visit h2 { margin:18px 0; font-family:var(--serif); font-size:clamp(40px,5vw,62px); font-weight:400; line-height:1.04; letter-spacing:-.04em; }
+    .story-copy { max-width:590px; padding-top:30px; color:var(--muted); font-size:16px; line-height:1.9; }
+    .story-copy p { margin:0 0 18px; }
+    .story-quote { margin-top:32px; padding-left:20px; border-left:2px solid var(--clay); color:var(--coffee); font-family:var(--serif); font-size:23px; line-height:1.4; }
+    .menu { padding:94px 0 108px; background:var(--paper-deep); }
+    .menu-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:42px; }
+    .menu-head p { max-width:310px; color:var(--muted); font-size:14px; line-height:1.65; }
+    .menu-list { border-top:1px solid var(--line); }
+    .menu-item { display:grid; grid-template-columns:62px 1fr auto; align-items:center; gap:20px; min-height:92px; border-bottom:1px solid var(--line); }
+    .menu-no { color:var(--clay); font-family:var(--serif); font-size:18px; }
+    .menu-item h3 { margin:0; font-family:var(--serif); font-size:25px; font-weight:400; }
+    .menu-item p { margin:5px 0 0; color:var(--muted); font-size:12px; }
+    .menu-arrow { color:var(--coffee); font-size:22px; }
+    .menu-note { margin-top:20px; color:var(--muted); font-size:11px; }
+    .visit { display:grid; grid-template-columns:1.1fr .9fr; gap:42px; align-items:center; padding-block:108px; }
+    .visit-card { padding:30px; border:1px solid var(--line); background:rgba(255,255,255,.22); }
+    .visit-card p { margin:0; color:var(--muted); font-size:14px; line-height:1.8; }
+    .visit-card .button { margin-top:22px; }
+    .visit-mark { display:flex; justify-content:center; align-items:center; min-height:270px; background:var(--coffee); color:var(--paper); }
+    .visit-mark div { text-align:center; font-family:var(--serif); font-size:45px; line-height:1.05; }
+    .visit-mark small { display:block; margin-top:15px; font-family:var(--sans); font-size:10px; letter-spacing:.22em; text-transform:uppercase; }
+    footer { background:var(--coffee-dark); color:#f5ebdd; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:20px; min-height:94px; }
+    .footer-brand { font-size:12px; font-weight:800; letter-spacing:.16em; }
+    footer p { color:rgba(245,235,221,.7); font-size:11px; }
+    footer a { color:#f5ebdd; font-size:11px; text-decoration:none; }
+    a:focus-visible { outline:3px solid #d1845e; outline-offset:4px; }
+    @media (max-width:760px) {
+      :root { --page: min(100% - 38px, 560px); }
+      .topline { font-size:9px; }
+      .nav { height:70px; }
+      .nav-links { gap:15px; }
+      .nav-links a { font-size:11px; }
+      .nav-links a:nth-child(2) { display:none; }
+      .nav-cta { padding:10px 12px; }
+      .hero { min-height:auto; grid-template-columns:1fr; gap:5px; padding-block:65px 35px; }
+      h1 { font-size:clamp(58px, 14vw, 82px); }
+      .hero-art { min-height:390px; margin-top:12px; }
+      .cup { width:min(88%, 390px); }
+      .art-caption { right:1%; bottom:7%; width:120px; font-size:15px; }
+      .ticker-inner { justify-content:flex-start; gap:28px; font-size:15px; }
+      .ticker span::after { padding-left:28px; }
+      .story { grid-template-columns:1fr; gap:0; padding-block:76px; }
+      .story-copy { padding-top:5px; }
+      .menu { padding:72px 0 78px; }
+      .menu-head { display:block; margin-bottom:25px; }
+      .menu-head p { margin-top:0; }
+      .menu-item { grid-template-columns:38px 1fr auto; gap:12px; min-height:82px; }
+      .menu-item h3 { font-size:22px; }
+      .visit { grid-template-columns:1fr; padding-block:76px; }
+      .visit-mark { min-height:210px; }
+      .footer-inner { align-items:flex-start; flex-direction:column; justify-content:center; gap:9px; padding-block:22px; }
+      footer p { margin:0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior:auto!important; transition:none!important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">Secawan kopi, ruang untuk bernafas</div>
+  <header>
+    <nav class="nav wrap" aria-label="Navigasi utama">
+      <a class="brand" href="#utama" aria-label="Kopi Bang Mi, halaman utama"><span class="bean-mark" aria-hidden="true">B</span><span>KOPI BANG MI</span></a>
+      <div class="nav-links">
+        <a href="#cerita">Cerita</a>
+        <a href="#menu">Menu</a>
+        <a class="nav-cta" href="#singgah">Singgah sebentar <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="utama">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">Kopi &amp; cerita</div>
+        <h1 id="hero-title">Hari terasa lebih <em>baik</em> dengan kopi.</h1>
+        <p class="hero-copy">Ambil jeda seketika. Nikmati aroma kopi, tenangkan fikiran, dan sambung hari dengan rasa yang lebih ringan.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#menu">Terokai menu <span aria-hidden="true">↘</span></a>
+          <a class="button button-quiet" href="#cerita">Kenali Kopi Bang Mi <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Ilustrasi cawan kopi" role="img">
+        <div class="sun-disc"></div><div class="ring"></div>
+        <svg class="cup" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M166 132C151 107 163 88 185 71M241 127C226 101 240 81 259 60M315 132C303 108 314 91 336 75" stroke="#8A6048" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+          <path d="M126 174H352L331 371C328 395 307 413 282 413H198C173 413 152 395 149 371L126 174Z" fill="#F8F1E6" stroke="#6D3E2D" stroke-width="8"/>
+          <path d="M352 211H385C423 211 436 240 424 273C412 307 389 319 339 317" stroke="#6D3E2D" stroke-width="18" stroke-linecap="round"/>
+          <path d="M143 192H338L329 247H150L143 192Z" fill="#6D3E2D"/>
+          <path d="M166 271C190 248 211 251 231 272C250 293 270 291 291 269C304 255 317 254 331 265" stroke="#C66E4D" stroke-width="7" stroke-linecap="round"/>
+          <path d="M174 299C194 280 212 281 231 298C249 315 270 316 291 296C305 283 317 283 328 291" stroke="#C66E4D" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+          <ellipse cx="240" cy="431" rx="135" ry="22" fill="#D8C4AA"/>
+          <ellipse cx="240" cy="424" rx="135" ry="22" fill="#F8F1E6" stroke="#6D3E2D" stroke-width="7"/>
+          <ellipse cx="240" cy="422" rx="72" ry="10" fill="#D8C4AA"/>
+          <path d="M184 192C189 176 204 165 222 165H260" stroke="#FFFDF8" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+          <path d="M99 130C115 112 133 117 140 135C146 151 132 166 116 163C98 160 89 145 99 130Z" fill="#6D3E2D"/>
+          <path d="M109 124C119 139 127 150 135 157" stroke="#D3A37E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M373 360C389 342 408 345 414 363C420 379 406 394 390 391C372 388 363 375 373 360Z" fill="#6D3E2D"/>
+          <path d="M383 354C393 369 401 380 409 387" stroke="#D3A37E" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="art-caption">Dibuat untuk dinikmati.<small>Kopi Bang Mi</small></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Suasana Kopi Bang Mi"><div class="ticker-inner wrap"><span>Aroma yang menyapa</span><span>Jeda yang bermakna</span><span>Kopi untuk hari ini</span></div></div>
+
+    <section class="story wrap" id="cerita" aria-labelledby="story-title">
+      <div>
+        <div class="section-index">01 / Cerita kami</div>
+        <h2 id="story-title">Bukan sekadar kopi.</h2>
+      </div>
+      <div class="story-copy">
+        <p>Kopi Bang Mi meraikan perkara sederhana: secawan kopi yang enak, perbualan yang baik, dan ruang kecil untuk berhenti seketika.</p>
+        <p>Sama ada pagi yang sibuk atau petang yang perlahan, biar secawan pilihan anda menemani langkah seterusnya.</p>
+        <div class="story-quote">“Kadang-kadang, rehat terbaik bermula dengan satu teguk.”</div>
+      </div>
+    </section>
+
+    <section class="menu" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="menu-head">
+          <div><div class="section-index">02 / Pilihan kopi</div><h2 id="menu-title">Apa yang anda suka?</h2></div>
+          <p>Beberapa idea untuk memulakan pilihan anda. Menu dan harga sebenar boleh ditambah kemudian.</p>
+        </div>
+        <div class="menu-list">
+          <article class="menu-item"><span class="menu-no">01</span><div><h3>Kopi O</h3><p>Ringkas, harum, klasik.</p></div><span class="menu-arrow" aria-hidden="true">↗</span></article>
+          <article class="menu-item"><span class="menu-no">02</span><div><h3>Kopi Susu</h3><p>Lembut dan seimbang.</p></div><span class="menu-arrow" aria-hidden="true">↗</span></article>
+          <article class="menu-item"><span class="menu-no">03</span><div><h3>Kopi Ais</h3><p>Pilihan menyegarkan.</p></div><span class="menu-arrow" aria-hidden="true">↗</span></article>
+        </div>
+        <p class="menu-note">*Pilihan menu di atas ialah contoh sementara dan boleh disesuaikan dengan menu sebenar kedai.</p>
+      </div>
+    </section>
+
+    <section class="visit wrap" id="singgah" aria-labelledby="visit-title">
+      <div>
+        <div class="section-index">03 / Singgah seketika</div>
+        <h2 id="visit-title">Kopi anda. Masa anda.</h2>
+        <div class="visit-card">
+          <p>Terima kasih kerana singgah ke Kopi Bang Mi. Alamat, waktu operasi dan cara membuat pesanan boleh dimasukkan di sini apabila maklumatnya tersedia.</p>
+          <a class="button button-primary" href="#utama">Kembali ke atas <span aria-hidden="true">↑</span></a>
+        </div>
+      </div>
+      <div class="visit-mark" aria-hidden="true"><div>Kopi<br>Bang Mi<small>Secawan untuk hari ini</small></div></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap"><div class="footer-brand">KOPI BANG MI</div><p>Secawan kopi, ruang untuk bernafas.</p><a href="#utama">Kembali ke atas ↑</a></div>
+  </footer>
+</body>
+</html>
